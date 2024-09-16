@@ -1,25 +1,33 @@
-import numpy as np
+def calcular_temperatura_promedio(datos_temperaturas):
+    """
+    Calcula la temperatura promedio de cada ciudad a lo largo de varias semanas.
 
-# Definir las dimensiones de la matriz
-num_ciudades = 3
-num_dias = 7
-num_semanas = 4
+    Parámetros:
+    datos_temperaturas (dict): Un diccionario donde las claves son los nombres de las ciudades
+                               y los valores son listas de temperaturas semanales.
 
-# Crear una matriz 3D con temperaturas aleatorias
-np.random.seed(0)  # Para reproducibilidad
-temperaturas = np.random.uniform(10, 30, size=(num_ciudades, num_dias, num_semanas))
+    Retorna:
+    dict: Un diccionario con las ciudades y su temperatura promedio.
+    """
+    promedios = {}
 
-# Inicializar una matriz para almacenar los promedios de temperaturas
-promedios_semanales = np.zeros((num_ciudades, num_semanas))
+    for ciudad, temperaturas in datos_temperaturas.items():
+        promedio = sum(temperaturas) / len(temperaturas)
+        promedios[ciudad] = promedio
 
-# Calcular los promedios de temperaturas para cada ciudad y semana
-for ciudad in range(num_ciudades):
-    for semana in range(num_semanas):
-        promedio = np.mean(temperaturas[ciudad, :, semana])
-        promedios_semanales[ciudad, semana] = promedio
+    return promedios
 
-# Mostrar los resultados
-for ciudad in range(num_ciudades):
-    print(f"Ciudad {ciudad + 1}:")
-    for semana in range(num_semanas):
-        print(f"  Semana {semana + 1}: Promedio de temperaturas = {promedios_semanales[ciudad, semana]:.2f}")
+
+# Ejemplo de uso:
+datos_temperaturas = {
+    "Ciudad A": [20, 22, 24, 19],
+    "Ciudad B": [30, 28, 31, 29],
+    "Ciudad C": [15, 18, 17, 16]
+}
+
+promedios = calcular_temperatura_promedio(datos_temperaturas)
+
+# Imprimir el resultado
+for ciudad, promedio in promedios.items():
+    print(f"El promedio de temperaturas en {ciudad} es: {promedio:.2f}°C")
+
