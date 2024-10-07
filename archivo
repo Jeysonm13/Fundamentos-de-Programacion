@@ -1,0 +1,13 @@
+# Lectura de Archivo de Texto
+# Abrimos el archivo en modo lectura ('r') usando 'with' nuevamente.
+with open('my_notes.txt', 'r', encoding='utf-8') as file:
+    # Usamos un bucle para leer el archivo línea por línea.
+    # El método readline() lee una línea a la vez.
+    while True:
+        line = file.readline()  # Leemos una línea del archivo
+        if not line:  # Si no hay más líneas (es el final del archivo)
+            break  # Salimos del bucle
+        # Mostramos en la consola cada línea leída, eliminando el salto de línea al final.
+        print(line.strip())  # strip() elimina espacios en blanco y saltos de línea innecesarios
+
+# Al finalizar, el bloque 'with' se encarga de cerrar el archivo automáticamente.
